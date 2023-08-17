@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:stylish/data/app_colors.dart';
 import 'package:stylish/data/typography.dart';
-import 'package:stylish/models/page_card_model.dart';
+import 'package:stylish/models/onboarding_model.dart';
 
 class OnboardingCard extends StatelessWidget {
   final OnboardingModel onboarding;

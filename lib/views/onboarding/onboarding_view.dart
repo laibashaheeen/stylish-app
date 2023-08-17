@@ -4,6 +4,7 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:stylish/data/app_colors.dart';
 import 'package:stylish/data/typography.dart';
 import 'package:stylish/models/onboarding_model.dart';
+import 'package:stylish/views/account/signin/signin_view.dart';
 import 'package:stylish/views/onboarding/components/onboarding_card.dart';
 
 class OnboardingView extends StatefulWidget {
@@ -22,30 +23,41 @@ class _OnboardingViewState extends State<OnboardingView> {
     return Scaffold(
         appBar: AppBar(
           elevation: 0,
-          title: RichText(
-            text: TextSpan(
-              style: const TextStyle(),
-              children: <TextSpan>[
-                TextSpan(
-                  text: '${_currentIndex + 1}',
-                  style: AppTypography.kSemiBold18
-                      .copyWith(color: AppColors.kBlack),
-                ),
-                TextSpan(
-                  text: '/3',
-                  style: AppTypography.kSemiBold18
-                      .copyWith(color: AppColors.kGrey1),
-                ),
-              ],
+          title: Padding(
+            padding:  EdgeInsets.only(left:17.0.w),
+            child: RichText(
+              text: TextSpan(
+                style: const TextStyle(),
+                children: <TextSpan>[
+                  TextSpan(
+                    text: '${_currentIndex + 1}',
+                    style: AppTypography.kSemiBold18
+                        .copyWith(color: AppColors.kBlack),
+                  ),
+                  TextSpan(
+                    text: '/3',
+                    style: AppTypography.kSemiBold18
+                        .copyWith(color: AppColors.kGrey1),
+                  ),
+                ],
+              ),
             ),
           ),
           actions: [
-            TextButton(
-              onPressed: () {},
-              child: Text(
-                "Skip",
-                style:
-                    AppTypography.kSemiBold18.copyWith(color: AppColors.kBlack),
+            Padding(
+               padding:  EdgeInsets.only(right:17.0.w),
+              child: TextButton(
+                onPressed: () {
+                  Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const SigninView()),
+              );
+                },
+                child: Text(
+                  "Skip",
+                  style:
+                      AppTypography.kSemiBold18.copyWith(color: AppColors.kBlack),
+                ),
               ),
             ),
           ],
@@ -67,12 +79,16 @@ class _OnboardingViewState extends State<OnboardingView> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 8.0.w),
+              padding: EdgeInsets.symmetric(horizontal: 17.0.w),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   TextButton(
-                    onPressed: _currentIndex == 0 ? null : () {},
+                    onPressed: _currentIndex == 0 ? null : () {
+                       controller.previousPage(
+                                duration: const Duration(milliseconds: 500),
+                                curve: Curves.easeIn);
+                    },
                     child: Text(
                       _currentIndex == 0 ? '' : 'Prev',
                       style: AppTypography.kSemiBold14
@@ -91,7 +107,10 @@ class _OnboardingViewState extends State<OnboardingView> {
                   TextButton(
                     onPressed: _currentIndex == 2
                         ? () {
-                            // Navigate to Next page
+                            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const SigninView()),
+            );
                           }
                         : () {
                             controller.nextPage(

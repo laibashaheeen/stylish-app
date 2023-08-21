@@ -4,7 +4,7 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:stylish/data/app_colors.dart';
 import 'package:stylish/data/typography.dart';
 import 'package:stylish/models/onboarding_model.dart';
-import 'package:stylish/views/account/signin/signin_view.dart';
+import 'package:stylish/views/auth/signin_view.dart';
 import 'package:stylish/views/onboarding/components/onboarding_card.dart';
 
 class OnboardingView extends StatefulWidget {
@@ -24,7 +24,7 @@ class _OnboardingViewState extends State<OnboardingView> {
         appBar: AppBar(
           elevation: 0,
           title: Padding(
-            padding:  EdgeInsets.only(left:17.0.w),
+            padding: EdgeInsets.only(left: 17.0.w),
             child: RichText(
               text: TextSpan(
                 style: const TextStyle(),
@@ -45,18 +45,18 @@ class _OnboardingViewState extends State<OnboardingView> {
           ),
           actions: [
             Padding(
-               padding:  EdgeInsets.only(right:17.0.w),
+              padding: EdgeInsets.only(right: 17.0.w),
               child: TextButton(
                 onPressed: () {
                   Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const SigninView()),
-              );
+                    context,
+                    MaterialPageRoute(builder: (context) => const SigninView()),
+                  );
                 },
                 child: Text(
                   "Skip",
-                  style:
-                      AppTypography.kSemiBold18.copyWith(color: AppColors.kBlack),
+                  style: AppTypography.kSemiBold18
+                      .copyWith(color: AppColors.kBlack),
                 ),
               ),
             ),
@@ -84,11 +84,13 @@ class _OnboardingViewState extends State<OnboardingView> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   TextButton(
-                    onPressed: _currentIndex == 0 ? null : () {
-                       controller.previousPage(
+                    onPressed: _currentIndex == 0
+                        ? null
+                        : () {
+                            controller.previousPage(
                                 duration: const Duration(milliseconds: 500),
                                 curve: Curves.easeIn);
-                    },
+                          },
                     child: Text(
                       _currentIndex == 0 ? '' : 'Prev',
                       style: AppTypography.kSemiBold14
@@ -108,9 +110,9 @@ class _OnboardingViewState extends State<OnboardingView> {
                     onPressed: _currentIndex == 2
                         ? () {
                             Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const SigninView()),
-            );
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const SigninView()));
                           }
                         : () {
                             controller.nextPage(
@@ -126,6 +128,7 @@ class _OnboardingViewState extends State<OnboardingView> {
                 ],
               ),
             ),
+            SizedBox(height: 40.h),
           ],
         ));
   }

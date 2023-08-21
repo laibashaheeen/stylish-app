@@ -98,3 +98,7 @@ class ForgetPasswordView extends StatelessWidget {
     );
   }
 }
+
+
+
+// Use the textfield widget i created

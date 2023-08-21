@@ -4,51 +4,61 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:stylish/data/app_assets.dart';
 import 'package:stylish/data/app_colors.dart';
 import 'package:stylish/data/typography.dart';
-import 'package:stylish/views/account/forget/forget_view.dart';
-import 'package:stylish/views/account/signin/components/custom_text_field.dart';
-import 'package:stylish/views/account/signup/signup_view.dart';
-import 'package:stylish/views/welcome_view.dart';
-
-class SigninView extends StatefulWidget {
-  const SigninView({super.key});
+import 'package:stylish/views/auth/signin_view.dart';
+class SignUpView extends StatefulWidget {
+  const SignUpView({super.key});
 
   @override
-  State<SigninView> createState() => _SigninViewState();
+  State<SignUpView> createState() => _SignUpViewState();
 }
 
-class _SigninViewState extends State<SigninView> {
+class _SignUpViewState extends State<SignUpView> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {},
       child: Scaffold(
           body: SingleChildScrollView(
-        padding: EdgeInsets.only(top: 63.h, left: 32.w, right: 26.w),
+        padding: EdgeInsets.only(top: 63.h, left: 29.w, right: 29.w),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Welcome\nBack!', style: AppTypography.kBold36),
+            Text('Create an \naccount', style: AppTypography.kBold36),
             SizedBox(
-              height: 36.0.h,
+              height: 33.0.h,
             ),
-            const CustomTextFormField(),
-            Align(
-              alignment: Alignment.centerRight,
-              child: TextButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => ForgetPasswordView()),
-                    );
-                  },
-                  child: Text(
-                    'Forgot Password?',
-                    style: AppTypography.kLight12
-                        .copyWith(color: AppColors.kPrimary),
-                  )),
+           // Also call the textfields here 
+            SizedBox(height: 19.h,),
+            Padding(
+              padding: EdgeInsets.only(left: 3.0.w),
+              child: RichText(
+                text: TextSpan(
+                  style: const TextStyle(),
+                  children: <TextSpan>[
+                    TextSpan(
+                      text:
+                          'By clicking the ',
+                      style: AppTypography.kExtraLight12
+                          .copyWith(color: AppColors.kGreyHint),
+                    ),
+                    TextSpan(
+                      text: 'Register ',
+                      style: AppTypography.kExtraLight12.copyWith(
+                        color: AppColors.kPrimary,
+                        
+                      ),
+                      
+                    ),
+                    TextSpan(
+                      text: 'button, you agree \nto the public offer',
+                      style: AppTypography.kExtraLight12
+                          .copyWith(color: AppColors.kGreyContinue),
+                    ),
+                  ],
+                ),
+              ),
             ),
-            SizedBox(height: 52.h),
+            SizedBox(height: 38.h),
             Container(
               height: 55,
               width: double.infinity,
@@ -57,18 +67,12 @@ class _SigninViewState extends State<SigninView> {
                 borderRadius: BorderRadius.circular(4),
               ),
               child: TextButton(
-                  onPressed: () {
-                    Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const WelcomeView()),
-                          );
-                  },
-                  child: Text('Login',
+                  onPressed: () {},
+                  child: Text('Create Account',
                       style: AppTypography.kSemiBold20
                           .copyWith(color: AppColors.kWhite))),
             ),
-            SizedBox(height: 75.h),
+            SizedBox(height: 40.h),
             Center(
               child: Text('- OR Continue with -',
                   style: AppTypography.kLight12
@@ -82,6 +86,10 @@ class _SigninViewState extends State<SigninView> {
                 SizedBox(
                   width: 10.w,
                 ),
+                Image(image: AssetImage(AppAssets.kApple)),
+                SizedBox(
+                  width: 10.w,
+                ),
                 Image(image: AssetImage(AppAssets.kFacebook)),
               ],
             ),
@@ -92,23 +100,22 @@ class _SigninViewState extends State<SigninView> {
                   style: const TextStyle(),
                   children: <TextSpan>[
                     TextSpan(
-                      text: 'Create An Account',
+                      text: 'I Already Have an Account',
                       style: AppTypography.kExtraLight14
                           .copyWith(color: AppColors.kGreyContinue),
                     ),
                     const TextSpan(text: ' '),
                     TextSpan(
-                      text: 'Sign Up',
+                      text: 'Login',
                       style: AppTypography.kSemiBold14.copyWith(
                         color: AppColors.kPrimary,
                         decoration: TextDecoration.underline,
                       ),
                       recognizer: TapGestureRecognizer()
                         ..onTap = () {
-                          Navigator.push(
+                               Navigator.push(
                             context,
-                            MaterialPageRoute(
-                                builder: (context) => const SignUpView()),
+                            MaterialPageRoute(builder: (context) =>  const SigninView()),
                           );
                         },
                     ),

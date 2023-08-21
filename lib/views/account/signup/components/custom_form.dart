@@ -39,6 +39,7 @@ class _CustomFormState extends State<CustomForm> {
         TextFormField(
           controller: _emailController,
           obscureText: false,
+          
           keyboardType: TextInputType.name,
           decoration: InputDecoration(
             contentPadding: EdgeInsets.zero,

@@ -7,6 +7,7 @@ import 'package:stylish/data/typography.dart';
 import 'package:stylish/views/account/forget/forget_view.dart';
 import 'package:stylish/views/account/signin/components/custom_text_field.dart';
 import 'package:stylish/views/account/signup/signup_view.dart';
+import 'package:stylish/views/welcome_view.dart';
 
 class SigninView extends StatefulWidget {
   const SigninView({super.key});
@@ -30,7 +31,7 @@ class _SigninViewState extends State<SigninView> {
             SizedBox(
               height: 36.0.h,
             ),
-            CustomTextFormField(),
+            const CustomTextFormField(),
             Align(
               alignment: Alignment.centerRight,
               child: TextButton(
@@ -56,7 +57,13 @@ class _SigninViewState extends State<SigninView> {
                 borderRadius: BorderRadius.circular(4),
               ),
               child: TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const WelcomeView()),
+                          );
+                  },
                   child: Text('Login',
                       style: AppTypography.kSemiBold20
                           .copyWith(color: AppColors.kWhite))),

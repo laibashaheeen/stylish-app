@@ -57,7 +57,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
               ),
             ),
             prefixIconConstraints:
-                BoxConstraints(minWidth: 24.w, minHeight: 24.w),
+                BoxConstraints(minWidth: 24.w, minHeight: 24.h),
             
           ),
         ),

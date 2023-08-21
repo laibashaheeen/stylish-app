@@ -4,6 +4,8 @@ import 'package:google_fonts/google_fonts.dart';
 
 class AppTypography {
   // Extra Light. (400)
+  static TextStyle kExtraLight10 =
+      GoogleFonts.montserrat(fontSize: 10.sp, fontWeight: FontWeight.w400);
  static TextStyle kExtraLight12 =
       GoogleFonts.montserrat(fontSize: 12.sp, fontWeight: FontWeight.w400);
       static TextStyle kExtraLight14 =
@@ -17,14 +19,20 @@ class AppTypography {
   // Medium . (600)
 
   // Semi Bold . (600 )
+   static TextStyle kSemiBold12 =
+      GoogleFonts.montserrat(fontSize: 12.sp, fontWeight: FontWeight.w600);
   static TextStyle kSemiBold14 =
       GoogleFonts.montserrat(fontSize: 14.sp, fontWeight: FontWeight.w600);
   static TextStyle kSemiBold18 =
       GoogleFonts.montserrat(fontSize: 18.sp, fontWeight: FontWeight.w600);
       static TextStyle kSemiBold20 =
       GoogleFonts.montserrat(fontSize: 20.sp, fontWeight: FontWeight.w600);
+      static TextStyle kSemiBold34 =
+      GoogleFonts.montserrat(fontSize: 34.sp, fontWeight: FontWeight.w600);
 
   // Bold . (700)
+  static TextStyle kBold20 =
+      GoogleFonts.montserrat(fontSize: 20.sp, fontWeight: FontWeight.w700);
  static TextStyle kBold36 =
       GoogleFonts.montserrat(fontSize: 36.sp, fontWeight: FontWeight.w700);
   // Extra . (800 )

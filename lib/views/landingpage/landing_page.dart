@@ -4,6 +4,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:stylish/data/app_assets.dart';
 import 'package:stylish/data/app_colors.dart';
 import 'package:stylish/views/homepage/homepage_view.dart';
+import 'package:stylish/views/shoppage/shoppage_view.dart';
+import 'package:stylish/views/trending/trendingpage_view.dart';
 
 class LandingPage extends StatefulWidget {
   const LandingPage({super.key});
@@ -18,9 +20,9 @@ class _HomePageState extends State<LandingPage> {
 
   List<Widget> pages = [
     const HomePage(),
+    const WishlistPage(),
     Container(),
-    Container(),
-    Container(),
+    const ShopPage(),
     Container(),
   ];
   @override
@@ -34,7 +36,9 @@ class _HomePageState extends State<LandingPage> {
         onPressed: () {
           isSelected = !isSelected;
 
-          setState(() {});
+          setState(() {
+            Navigator.push(context, MaterialPageRoute(builder: (context) => const ShopPage()));
+          });
         },
         backgroundColor: isSelected ? AppColors.kPrimary : AppColors.kWhite,
         shape: RoundedRectangleBorder(

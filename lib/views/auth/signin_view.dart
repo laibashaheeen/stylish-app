@@ -20,6 +20,7 @@ class SigninView extends StatefulWidget {
 class _SigninViewState extends State<SigninView> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -27,22 +28,27 @@ class _SigninViewState extends State<SigninView> {
       child: Scaffold(
           body: SingleChildScrollView(
         padding: EdgeInsets.only(top: 63.h, left: 26.w, right: 26.w),
-        // padding must be same
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text('Welcome\nBack!', style: AppTypography.kBold36),
             SizedBox(height: 36.0.h),
-            AuthField(
-                controller: _emailController,
-                hintText: 'Username or email',
-                icon: AppAssets.kUser),
-            SizedBox(height: 30.h),
-            AuthField(
-                controller: _passwordController,
-                isPassword: true,
-                hintText: 'Enter Password',
-                icon: AppAssets.kLock),
+            Form(
+                key: _formKey,
+                child: Column(
+                  children: [
+                    AuthField(
+                        controller: _emailController,
+                        hintText: 'Username or Email',
+                        icon: AppAssets.kUser),
+                    SizedBox(height: 30.h),
+                    AuthField(
+                        controller: _passwordController,
+                        isPassword: true,
+                        hintText: 'Password',
+                        icon: AppAssets.kLock),
+                  ],
+                )),
             Align(
               alignment: Alignment.centerRight,
               child: TextButton(
@@ -60,7 +66,18 @@ class _SigninViewState extends State<SigninView> {
                   )),
             ),
             SizedBox(height: 52.h),
-          PrimaryButton(onTap: () {}, text: 'LOGIn'),
+            PrimaryButton(
+                onTap: () {
+                  {if (_formKey.currentState!.validate()) {
+                    Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const WelcomeView()),
+                  );
+                  }}
+                  
+                },
+                text: 'Login'),
             SizedBox(height: 75.h),
             Center(
               child: Text('- OR Continue with -',

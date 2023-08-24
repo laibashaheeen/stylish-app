@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:stylish/data/app_assets.dart';
 import 'package:stylish/data/app_colors.dart';
 import 'package:stylish/data/typography.dart';
+import 'package:stylish/views/auth/components/auth_field.dart';
+import 'package:stylish/views/widgets/buttons/primary_button.dart';
 
 
 class ForgetPasswordView extends StatelessWidget {
  ForgetPasswordView({super.key});
     final TextEditingController _emailController = TextEditingController();
-
+    final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -36,61 +37,21 @@ class ForgetPasswordView extends StatelessWidget {
                  SizedBox(
                   height: 32.0.h,
                 ),
-          
-               TextFormField(
-          controller: _emailController,
-          obscureText: false,
-          keyboardType: TextInputType.name,
-          decoration: InputDecoration(
-            contentPadding: EdgeInsets.zero,
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10.0.r),
-              borderSide:
-                  BorderSide(color: AppColors.kGreyBorder, width: 1.0.w),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10.0.r),
-              borderSide:
-                  BorderSide(color: AppColors.kGreyBorder, width: 1.0.w),
-            ),
-            filled: true,
-            fillColor: AppColors.kGreyFilled,
-            hintText: 'Username or Email',
-            hintStyle:
-                AppTypography.kLight12.copyWith(color: AppColors.kGreyHint),
-            prefixIcon: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 8.0.w),
-              child: SvgPicture.asset(
-                AppAssets.kMail,
-              ),
-            ),
-            prefixIconConstraints:
-                BoxConstraints(minWidth: 24.w, minHeight: 24.w),
-            errorStyle: const TextStyle(color: Colors.red),
+          Form(
+            key: _formKey,
+            child: AuthField(
+                  controller: _emailController,
+                  hintText: 'Username or Email',
+                  icon: AppAssets.kMail,),
           ),
-        ),
+               
                SizedBox(height: 26.h,),
-                TextButton(
-                    onPressed: () {},
-                    child:  Text(
-                      '* We will send you a message to set or reset \nyour new password',
-                      style: AppTypography.kLight12.copyWith(color: AppColors.kGreyHint),
-                    )),
-               SizedBox(height: 26.h),
-                Container(
-                  height: 55,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                        color: AppColors.kPrimary,
-                        borderRadius: BorderRadius.circular(4),
-                      ),
-                       child: TextButton(
-                      onPressed: () {},
-                      child: Text(
-                        'Submit',
-                        style: AppTypography.kSemiBold20.copyWith(color: AppColors.kWhite)
-                      )),
+                Text(
+                  '* We will send you a message to set or reset \nyour new password',
+                  style: AppTypography.kLight12.copyWith(color: AppColors.kGreyHint),
                 ),
+               SizedBox(height: 26.h),
+               PrimaryButton(onTap: () {if (_formKey.currentState!.validate()) {}}, text: 'Submit')
                 
               ],
             ),
@@ -101,4 +62,3 @@ class ForgetPasswordView extends StatelessWidget {
 
 
 
-// Use the textfield widget i created

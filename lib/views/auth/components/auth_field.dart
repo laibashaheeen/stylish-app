@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:stylish/data/app_assets.dart';
 import 'package:stylish/data/app_colors.dart';
 import 'package:stylish/data/typography.dart';
+import 'package:stylish/views/widgets/validator.dart';
 
 class AuthField extends StatefulWidget {
   final TextEditingController controller;
@@ -21,23 +22,43 @@ class AuthField extends StatefulWidget {
   State<AuthField> createState() => _AuthFieldState();
 }
 
+
+
 class _AuthFieldState extends State<AuthField> {
   bool isObscure = true;
+
+  void _togglePasswordVisibility() {
+    setState(() {
+      isObscure = !isObscure;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       controller: widget.controller,
       obscureText: widget.isPassword ? isObscure : false,
+      validator: (value) {
+        if (widget.isPassword) {
+          return CustomValidator.validatePassword(value);
+        } else {
+          return CustomValidator.validateUsername(value);
+        }
+      },
       keyboardType: TextInputType.name,
       decoration: InputDecoration(
           contentPadding: EdgeInsets.zero,
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10.0.r),
-            borderSide: BorderSide(color: AppColors.kGreyBorder, width: 1.0.w),
+            borderSide: BorderSide(color: AppColors.kGrey, width: 1.0.w),
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10.0.r),
-            borderSide: BorderSide(color: AppColors.kGreyBorder, width: 1.0.w),
+            borderSide: BorderSide(color: AppColors.kGrey, width: 1.0.w),
+          ),
+          errorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10.0.r),
+            borderSide: BorderSide(color: AppColors.kPrimary, width: 1.0.w),
           ),
           filled: true,
           fillColor: AppColors.kGreyFilled,
@@ -52,12 +73,17 @@ class _AuthFieldState extends State<AuthField> {
           ),
           suffixIcon: widget.isPassword
               ? IconButton(
-                  onPressed: () {
-                    isObscure = !isObscure;
-                  },
-                  icon: SvgPicture.asset(
-                    isObscure ? AppAssets.kEyeOff : AppAssets.kEye,
-                  ))
+                  onPressed: _togglePasswordVisibility,
+                  icon: ColorFiltered(
+                    colorFilter: ColorFilter.mode(
+                      AppColors.kGreySvg,
+                      BlendMode.srcIn,
+                    ),
+                    child: SvgPicture.asset(
+                      isObscure ? AppAssets.kEyeOff : AppAssets.kEye,
+                    ),
+                  ),
+                )
               : null),
     );
   }

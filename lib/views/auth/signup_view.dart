@@ -4,7 +4,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:stylish/data/app_assets.dart';
 import 'package:stylish/data/app_colors.dart';
 import 'package:stylish/data/typography.dart';
+import 'package:stylish/views/auth/components/auth_field.dart';
 import 'package:stylish/views/auth/signin_view.dart';
+import 'package:stylish/views/widgets/buttons/primary_button.dart';
+
 class SignUpView extends StatefulWidget {
   const SignUpView({super.key});
 
@@ -13,6 +16,10 @@ class SignUpView extends StatefulWidget {
 }
 
 class _SignUpViewState extends State<SignUpView> {
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final _confirmPasswordController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -27,8 +34,34 @@ class _SignUpViewState extends State<SignUpView> {
             SizedBox(
               height: 33.0.h,
             ),
-           // Also call the textfields here 
-            SizedBox(height: 19.h,),
+            Form(
+              key: _formKey,
+              child: Column(children: [
+AuthField(
+                controller: _emailController,
+                hintText: 'Username or Email',
+                icon: AppAssets.kUser),
+            SizedBox(
+              height: 31.h,
+            ),
+            AuthField(
+                controller: _passwordController,
+                isPassword: true,
+                hintText: 'Password',
+                icon: AppAssets.kLock),
+            SizedBox(
+              height: 31.h,
+            ),
+            AuthField(
+                controller: _confirmPasswordController,
+                isPassword: true,
+                hintText: 'Confirm Password',
+                icon: AppAssets.kLock),
+            ],)),
+            
+            SizedBox(
+              height: 19.h,
+            ),
             Padding(
               padding: EdgeInsets.only(left: 3.0.w),
               child: RichText(
@@ -36,8 +69,7 @@ class _SignUpViewState extends State<SignUpView> {
                   style: const TextStyle(),
                   children: <TextSpan>[
                     TextSpan(
-                      text:
-                          'By clicking the ',
+                      text: 'By clicking the ',
                       style: AppTypography.kExtraLight12
                           .copyWith(color: AppColors.kGreyHint),
                     ),
@@ -45,9 +77,7 @@ class _SignUpViewState extends State<SignUpView> {
                       text: 'Register ',
                       style: AppTypography.kExtraLight12.copyWith(
                         color: AppColors.kPrimary,
-                        
                       ),
-                      
                     ),
                     TextSpan(
                       text: 'button, you agree \nto the public offer',
@@ -59,19 +89,7 @@ class _SignUpViewState extends State<SignUpView> {
               ),
             ),
             SizedBox(height: 38.h),
-            Container(
-              height: 55,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: AppColors.kPrimary,
-                borderRadius: BorderRadius.circular(4),
-              ),
-              child: TextButton(
-                  onPressed: () {},
-                  child: Text('Create Account',
-                      style: AppTypography.kSemiBold20
-                          .copyWith(color: AppColors.kWhite))),
-            ),
+            PrimaryButton(onTap: () {if (_formKey.currentState!.validate()) {}}, text: 'Create Account'),
             SizedBox(height: 40.h),
             Center(
               child: Text('- OR Continue with -',
@@ -113,10 +131,13 @@ class _SignUpViewState extends State<SignUpView> {
                       ),
                       recognizer: TapGestureRecognizer()
                         ..onTap = () {
-                               Navigator.push(
+                          
+                          Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) =>  const SigninView()),
+                            MaterialPageRoute(
+                                builder: (context) => const SigninView()),
                           );
+                         
                         },
                     ),
                   ],

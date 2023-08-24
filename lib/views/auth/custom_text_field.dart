@@ -38,12 +38,12 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10.0.r),
               borderSide:
-                  BorderSide(color: AppColors.kGreyBorder, width: 1.0.w),
+                  BorderSide(color: AppColors.kGrey, width: 1.0.w),
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10.0.r),
               borderSide:
-                  BorderSide(color: AppColors.kGreyBorder, width: 1.0.w),
+                  BorderSide(color: AppColors.kGrey, width: 1.0.w),
             ),
             filled: true,
             fillColor: AppColors.kGreyFilled,
@@ -74,12 +74,12 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10.0.r),
               borderSide:
-                  BorderSide(color: AppColors.kGreyBorder, width: 1.0.w),
+                  BorderSide(color: AppColors.kGrey, width: 1.0.w),
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10.0.r),
               borderSide:
-                  BorderSide(color: AppColors.kGreyBorder, width: 1.0.w),
+                  BorderSide(color: AppColors.kGrey, width: 1.0.w),
             ),
            filled: true,
             fillColor: AppColors.kGreyFilled,

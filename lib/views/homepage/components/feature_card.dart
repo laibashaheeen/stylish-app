@@ -11,10 +11,10 @@ class FeatureCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Container(
-                  child:   Image.asset(featureItem.image),
-                ),
+                  Image.asset(featureItem.image),
+                
               
                 SizedBox(height: 4.h,),
               Text(featureItem.title,style: AppTypography.kExtraLight12.copyWith(color: AppColors.kBlack))

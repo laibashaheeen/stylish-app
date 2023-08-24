@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:stylish/data/app_assets.dart';
 import 'package:stylish/data/app_colors.dart';
 import 'package:stylish/data/typography.dart';
@@ -44,13 +45,13 @@ class BannerCard extends StatelessWidget {
                       onTap: () {},
                       child: Container(
                         padding: EdgeInsets.all(8.h),
-                        width: 110.w,
+                        width: 100.w,
                         height: 35.h,
-                        // alignment: Alignment.center,
+                        
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(6.r),
                           border: Border.all(
-                            color: Colors.white,
+                            color:  AppColors.kWhite,
                             width: 1,
                           ),
                         ),
@@ -62,8 +63,7 @@ class BannerCard extends StatelessWidget {
                                   .copyWith(color: AppColors.kWhite),
                             ),
                             SizedBox(width: 4.w,),
-                            Icon(Icons.arrow_forward,
-                            color: AppColors.kWhite,)
+                            SvgPicture.asset(AppAssets.kForwardArrow),
                           ],
                         ),
                       ),

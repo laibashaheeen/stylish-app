@@ -21,6 +21,7 @@ class CustomTextField extends StatelessWidget {
           filled: true,
           fillColor: AppColors.kWhite,
           hintText: 'Search any Product..',
+          
           hintStyle: AppTypography.kExtraLight14.copyWith(color: AppColors.kGreySearch),
           prefixIcon: SvgPicture.asset(AppAssets.kSearchBar),
           prefixIconConstraints:

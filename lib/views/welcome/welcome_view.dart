@@ -4,6 +4,7 @@ import 'package:stylish/data/app_assets.dart';
 import 'package:stylish/data/app_colors.dart';
 import 'package:stylish/data/typography.dart';
 import 'package:stylish/views/landingpage/landing_page.dart';
+import 'package:stylish/views/widgets/buttons/primary_button.dart';
 
 class WelcomeView extends StatelessWidget {
   const WelcomeView({Key? key}) : super(key: key);
@@ -25,6 +26,7 @@ class WelcomeView extends StatelessWidget {
           ),
           Container(
             width: double.infinity,
+          
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: [
@@ -57,21 +59,13 @@ class WelcomeView extends StatelessWidget {
                         .copyWith(color: AppColors.kGreyWelcome),
                   ),
                 ),
-                Container(
-                  margin: EdgeInsets.only(bottom: 34.h),
-                  height: 55,
-                  width: 270.w,
-                  decoration: BoxDecoration(
-                    color: AppColors.kPrimary,
-                    borderRadius: BorderRadius.circular(4),
-                  ),
-                  child: TextButton(
-                      onPressed: () {
-                        Navigator.push(context, MaterialPageRoute(builder:(context) => const LandingPage(),));
-                      },
-                      child: Text('Get Started',
-                          style: AppTypography.kSemiBold20
-                              .copyWith(color: AppColors.kWhite))),
+                Padding(
+                  padding: EdgeInsets.only(left: 56.0.w, right: 56.w,bottom: 34.h),
+                  child: PrimaryButton(onTap: () {Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const LandingPage()),
+                            );}, text: 'Get Started'),
                 ),
               ],
             ),

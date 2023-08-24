@@ -12,6 +12,7 @@ class PrimaryButton extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Container(
+        alignment: Alignment.center,
         height: 55,
         width: double.infinity,
         decoration: BoxDecoration(

@@ -5,11 +5,21 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:stylish/data/app_assets.dart';
 import 'package:stylish/data/app_colors.dart';
-import 'package:stylish/data/typography.dart';
+import 'package:stylish/models/catelog_model.dart';
 import 'package:stylish/models/feature_model.dart';
+import 'package:stylish/models/shop_catalog_model.dart';
 import 'package:stylish/views/homepage/components/banner_card.dart';
+import 'package:stylish/views/homepage/components/catalog_card.dart';
 import 'package:stylish/views/homepage/components/custom_text_field.dart';
+import 'package:stylish/views/homepage/components/deal_card.dart';
 import 'package:stylish/views/homepage/components/feature_card.dart';
+import 'package:stylish/views/homepage/components/heels_card.dart';
+import 'package:stylish/views/homepage/components/shop_catalog_card.dart';
+import 'package:stylish/views/homepage/components/special_offer_card.dart';
+import 'package:stylish/views/homepage/components/sponsor_card.dart';
+import 'package:stylish/views/homepage/components/summer_sale.dart';
+import 'package:stylish/views/profile/profile_view.dart';
+import 'package:stylish/views/widgets/filter_row.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -21,12 +31,14 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final CarouselController carouselController = CarouselController();
   final PageController controller = PageController();
+  final ScrollController _scrollController =
+      ScrollController(initialScrollOffset: 0);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: AppColors.kWhiteBody,
+        
         elevation: 0,
         leading: IconButton(
           onPressed: () {},
@@ -35,70 +47,37 @@ class _HomePageState extends State<HomePage> {
         centerTitle: true,
         title: Image.asset(AppAssets.kLogo),
         actions: [
-          Image.asset(AppAssets.kProfile),
+          InkWell(onTap: () {
+            Navigator.push(context, MaterialPageRoute(builder:(context) => const ProfilePage(),));
+          } ,child: Image.asset(AppAssets.kProfile)),
         ],
       ),
       backgroundColor: AppColors.kWhiteBody,
       body: SingleChildScrollView(
-        padding: EdgeInsets.all(16.h),
+        padding: EdgeInsets.only(
+          left: 16.h,
+          top: 16.h,
+        ),
         child: Column(
           children: [
-            const CustomTextField(),
+            Padding(
+              padding: EdgeInsets.only(right: 16.0.h),
+              child: const CustomTextField(),
+            ),
             SizedBox(
               height: 16.h,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'All Featured',
-                  style: AppTypography.kSemiBold18
-                      .copyWith(color: AppColors.kBlack),
-                ),
-                Row(
-                  children: [
-                    Container(
-                      padding: EdgeInsets.all(8.w),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(6.r),
-                          color: AppColors.kWhite),
-                      child: Row(
-                        children: [
-                          Text('Sort',
-                              style: AppTypography.kExtraLight12
-                                  .copyWith(color: AppColors.kBlack)),
-                          SvgPicture.asset(AppAssets.kSort),
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      width: 12.w,
-                    ),
-                    Container(
-                      padding: EdgeInsets.all(8.w),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(6.r),
-                          color: AppColors.kWhite),
-                      child: Row(
-                        children: [
-                          Text('Filter',
-                              style: AppTypography.kExtraLight12
-                                  .copyWith(color: AppColors.kBlack)),
-                          SvgPicture.asset(AppAssets.kFilter),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ],
+            Padding(
+              padding: EdgeInsets.only(right: 16.0.h),
+              child: const FilterRow(text: 'All Featured')
             ),
             SizedBox(
-              height: 25.h,
+              height: 17.h,
             ),
-            SizedBox(
-              height: 76.h,
+            Container(
+              height: 90.h,
+              color: AppColors.kWhite,
               child: ListView.separated(
-                  shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
                   separatorBuilder: (context, index) => SizedBox(width: 16.w),
                   scrollDirection: Axis.horizontal,
@@ -108,26 +87,29 @@ class _HomePageState extends State<HomePage> {
                   }),
             ),
             SizedBox(
-              height: 24.h,
+              height: 16.h,
             ),
-            CarouselSlider(
-                carouselController: carouselController,
-                items: const [
-                  BannerCard(),
-                  BannerCard(),
-                  BannerCard(),
-                ],
-                options: CarouselOptions(
-                  height: 189.h,
-                  viewportFraction: 1,
-                  initialPage: 0,
-                  enableInfiniteScroll: true,
-                  autoPlay: true,
-                  autoPlayInterval: const Duration(seconds: 2),
-                  autoPlayAnimationDuration:
-                      const Duration(milliseconds: 800),
-                  autoPlayCurve: Curves.fastOutSlowIn,
-                )),
+            Padding(
+              padding: EdgeInsets.only(right: 16.0.h),
+              child: CarouselSlider(
+                  carouselController: carouselController,
+                  items: const [
+                    BannerCard(),
+                    BannerCard(),
+                    BannerCard(),
+                  ],
+                  options: CarouselOptions(
+                    height: 189.h,
+                    viewportFraction: 1,
+                    initialPage: 0,
+                    enableInfiniteScroll: true,
+                    autoPlay: true,
+                    autoPlayInterval: const Duration(seconds: 2),
+                    autoPlayAnimationDuration:
+                        const Duration(milliseconds: 800),
+                    autoPlayCurve: Curves.fastOutSlowIn,
+                  )),
+            ),
             SizedBox(
               height: 12.h,
             ),
@@ -136,14 +118,136 @@ class _HomePageState extends State<HomePage> {
               count: 3,
               effect: ScaleEffect(
                 activeDotColor: AppColors.kPink,
-                dotColor: AppColors.kGrey,
+                dotColor: AppColors.kGreyIndicator,
                 dotHeight: 9,
                 dotWidth: 9,
-                spacing: 4,
+                spacing: 6,
               ),
             ),
-
-           
+            SizedBox(
+              height: 23.h,
+            ),
+            Padding(
+              padding: EdgeInsets.only(right: 16.0.h),
+              child: DealCard(
+                subtitle: '22h 55m 20s remaining',
+                title: 'deal of the day',
+                svg: AppAssets.kClock,
+                color: AppColors.kBlue,
+              ),
+            ),
+            SizedBox(
+              height: 16.h,
+            ),
+            Padding(
+              padding: EdgeInsets.only(right: 16.0.h),
+              child: Stack(
+                alignment: Alignment.centerRight,
+                children: [
+                  SizedBox(
+                    height: 255.h,
+                    child: ListView.separated(
+                      itemCount: 2,
+                      physics: const NeverScrollableScrollPhysics(),
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, index) {
+                        return CatalogCard(
+                          offerItem: offerItem[index],
+                        );
+                      },
+                      separatorBuilder: (BuildContext context, int index) {
+                        return SizedBox(
+                          width: 12.w,
+                        );
+                      },
+                    ),
+                  ),
+                  Positioned(
+                      right: 9,
+                      child: InkWell(
+                          onTap: () {},
+                          child: Image.asset(AppAssets.kIosArrow)))
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 16.h,
+            ),
+            Padding(
+              padding: EdgeInsets.only(right: 16.0.h),
+              child: const OfferCard(),
+            ),
+            SizedBox(
+              height: 16.h,
+            ),
+            Padding(
+              padding: EdgeInsets.only(right: 16.0.h),
+              child: const HeelCard(),
+            ),
+            SizedBox(
+              height: 17.h,
+            ),
+            Padding(
+              padding: EdgeInsets.only(right: 16.0.h),
+              child: DealCard(
+                subtitle: 'Last Date 29/02/22',
+                title: 'Trending Products',
+                svg: AppAssets.kCalender,
+                color: AppColors.kPrimaryHue,
+              ),
+            ),
+            SizedBox(
+              height: 16.h,
+            ),
+            Stack(
+              alignment: Alignment.centerRight,
+              children: [
+                SizedBox(
+                  height: 210.h,
+                  child: ListView.separated(
+                    controller: _scrollController,
+                    itemCount: shopItem.length,
+                    scrollDirection: Axis.horizontal,
+                    
+                    itemBuilder: (context, index) {
+                      return ShopCatalogCard(
+                        shopItem: shopItem[index],
+                      );
+                    },
+                    separatorBuilder: (BuildContext context, int index) {
+                      return SizedBox(
+                        width: 16.w,
+                      );
+                    },
+                  ),
+                ),
+                Positioned(
+                  right: 16,
+                  child: InkWell(
+                    onTap: () {
+                      int nextIndex =
+                          _scrollController.position.pixels ~/ 210.h + 1;
+                      if (nextIndex < shopItem.length) {
+                        _scrollController.animateTo(nextIndex * 210.h,
+                            duration: const Duration(milliseconds: 500),
+                                curve: Curves.easeIn);
+                      }
+                    },
+                    child: Image.asset(AppAssets.kIosArrow),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 16.h,),
+            Padding(
+                padding: EdgeInsets.only(right: 16.0.h),
+              child: const SummerSale(),
+            ),
+            SizedBox(height: 16.h,),
+            const SponsorCard(),
+            SizedBox(
+              height: 100.h,
+            )
           ],
         ),
       ),

@@ -14,10 +14,13 @@ class AppColors {
   static Color kGreyIndicator = const Color(0xFFDEDBDB);
   static Color kGreyWrap = const Color(0xFF828282);
   static Color kGreyDivider = const Color(0xFFC4C4C4);
+  static Color kGreyText = const Color(0xFF4C5059);
+  static Color kGreyButton = const Color(0xFFF8F8F8);
   static Color kWhite = Colors.white;
   static Color kWhiteBody = const Color.fromARGB(255, 249, 248, 248);
   static Color kBlack = Colors.black;
   static Color kBlackShadow = const Color(0x40000000);
+  static Color kBlackText = const Color(0xFF222222);
   static Color kBlue = const Color(0xFF4392F9);
   static Color kBlueEnd = const Color(0xFF0B3689);
   static Color kBlueStart = const Color(0xFF3F92FF);

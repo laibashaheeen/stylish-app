@@ -22,6 +22,8 @@ class AppTypography {
       GoogleFonts.montserrat(fontSize: 14.sp, fontWeight: FontWeight.w500);
        static TextStyle kLight16 =
       GoogleFonts.montserrat(fontSize: 16.sp, fontWeight: FontWeight.w500);
+      static TextStyle kLight18 =
+      GoogleFonts.montserrat(fontSize: 18.sp, fontWeight: FontWeight.w500);
   static TextStyle kLight20 =
       GoogleFonts.montserrat(fontSize: 20.sp, fontWeight: FontWeight.w500);
       

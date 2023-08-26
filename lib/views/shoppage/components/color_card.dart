@@ -5,7 +5,7 @@ import 'package:stylish/data/app_colors.dart';
 import 'package:stylish/data/typography.dart';
 import 'package:stylish/models/color_card_model.dart';
 import 'package:stylish/views/checkout/checkout_view.dart';
-import 'package:stylish/views/profile/profile_view.dart';
+import 'package:stylish/views/placeorder/placeorder_page.dart';
 
 class ColorCard extends StatelessWidget {
   final ColorCardModel colorCardItem;
@@ -23,7 +23,7 @@ class ColorCard extends StatelessWidget {
               MaterialPageRoute(builder: (context) => const CheckoutPage()));
         } else if (index == 1) {
           Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const ProfilePage()));
+              MaterialPageRoute(builder: (context) => const PlaceOrderPage()));
         }
       },
       child: Stack(

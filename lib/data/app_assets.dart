@@ -46,6 +46,11 @@ class AppAssets {
   static String kNikeMulti = 'assets/images/nike_multi.png';
   static String kMenJacket = 'assets/images/men_jacket.png';
   static String kCasualWear = 'assets/images/casual_wear.png';
+  static String kVisa = 'assets/images/visa.png';
+  static String kMaestro = 'assets/images/maestro.png';
+  static String kPaypal = 'assets/images/paypal.png';
+  static String kApplSignin = 'assets/images/apple_signin.png';
+  
 
   //svg
   static String kEye = 'assets/icons/eye.svg';
@@ -76,4 +81,9 @@ class AppAssets {
   static String kCompareItem = 'assets/icons/compare.svg';
   static String kAdd = 'assets/icons/add.svg';
   static String kEditAddress = 'assets/icons/edit_address.svg';
+  static String kCoupon = 'assets/icons/coupon.svg';
+  static String kDone = 'assets/icons/tick.svg';
+  static String kCircle = 'assets/icons/circle.svg';
+  static String kStar = 'assets/icons/star.svg';
+  static String kCircleSmall = 'assets/icons/circle_small.svg';
 }

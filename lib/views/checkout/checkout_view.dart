@@ -134,7 +134,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                       
                       itemCount: checkoutItem.length,
                       itemBuilder: (context, index) {
-                        return CheckoutCard(checkoutItem: checkoutItem[index]);
+                        return CheckoutCard(checkoutItem: checkoutItem[index],);
                       }),
                 ),
           ],

@@ -4,12 +4,14 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:stylish/data/app_assets.dart';
 import 'package:stylish/data/app_colors.dart';
 import 'package:stylish/data/typography.dart';
+import 'package:stylish/models/checkout_model.dart';
 import 'package:stylish/views/placeorder/components/custom_container.dart';
 import 'package:stylish/views/shippingpage/shipping_page.dart';
 import 'package:stylish/views/widgets/buttons/primary_button.dart';
 
 class PlaceOrderPage extends StatefulWidget {
-  const PlaceOrderPage({super.key});
+  final CheckoutModel checkoutItem;
+  const PlaceOrderPage({super.key, required this.checkoutItem});
 
   @override
   State<PlaceOrderPage> createState() => _PlaceOrderPageState();
@@ -57,7 +59,7 @@ class _PlaceOrderPageState extends State<PlaceOrderPage> {
                     width: 123.w,
                     height: 153.h,
                     child: Image.asset(
-                      AppAssets.kCasualWear,
+                      widget.checkoutItem.image,
                       fit: BoxFit.fitHeight,
                     )),
               ),
@@ -68,7 +70,7 @@ class _PlaceOrderPageState extends State<PlaceOrderPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Women’s Casual Wear",
+                    widget.checkoutItem.title,
                     style: AppTypography.kSemiBold16
                         .copyWith(color: AppColors.kBlack),
                   ),

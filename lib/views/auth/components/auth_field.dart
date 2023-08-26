@@ -60,6 +60,10 @@ class _AuthFieldState extends State<AuthField> {
             borderRadius: BorderRadius.circular(10.0.r),
             borderSide: BorderSide(color: AppColors.kPrimary, width: 1.0.w),
           ),
+          focusedErrorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10.0.r),
+            borderSide: BorderSide(color: AppColors.kPrimary, width: 1.0.w),
+          ),
           filled: true,
           fillColor: AppColors.kGreyFilled,
           hintText: widget.hintText,

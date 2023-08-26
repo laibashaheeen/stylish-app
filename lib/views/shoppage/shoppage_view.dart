@@ -138,7 +138,7 @@ class _ShopPageState extends State<ShopPage> {
                 ),
                 SizedBox(height: 12.h),
                 SizedBox(
-                    height: 35.h,
+                    height: 40.h,
                     child: ListView.separated(
                       
                       physics: const NeverScrollableScrollPhysics(),

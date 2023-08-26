@@ -45,7 +45,7 @@ class _WishlistPageState extends State<WishlistPage> {
             SizedBox(
               height: 16.h,
             ),
-            const FilterRow(text: '52,082+ Iteams',),
+            const FilterRow(text: '52,082+ Items',),
             SizedBox(
               height: 17.h,
             ),

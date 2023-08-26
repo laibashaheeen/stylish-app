@@ -106,7 +106,7 @@ class _ShippingPageState extends State<ShippingPage> {
                   insetPadding: EdgeInsets.symmetric(horizontal: 22.w),
                   child: Padding(
                     padding: EdgeInsets.symmetric(
-                        vertical: 25.0.h, horizontal: 65.w),
+                        vertical: 30.0.h, horizontal: 60.w),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -120,7 +120,7 @@ class _ShippingPageState extends State<ShippingPage> {
                             ),
                           ],
                         ),
-                        SizedBox(height: 16.h),
+                        SizedBox(height: 30.h),
                         Text("Payment done successfully.",
                             style: AppTypography.kSemiBold14
                                 .copyWith(color: AppColors.kBlack))

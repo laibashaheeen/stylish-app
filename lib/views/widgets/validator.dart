@@ -1,3 +1,5 @@
+
+
 class CustomValidator {
   static String? validatePassword(String? value) {
     if (value == null || value.isEmpty) {
@@ -22,6 +24,7 @@ class CustomValidator {
         .hasMatch(value)) {
       return 'Please enter a valid email address.';
     }
+
     return null;
   }
 }

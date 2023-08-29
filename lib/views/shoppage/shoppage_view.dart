@@ -1,8 +1,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:stylish/data/app_assets.dart';
 import 'package:stylish/data/app_colors.dart';
 import 'package:stylish/data/typography.dart';
@@ -28,7 +28,7 @@ class ShopPage extends StatefulWidget {
 class _ShopPageState extends State<ShopPage> {
   final CarouselController carouselController = CarouselController();
   final PageController controller = PageController();
-
+  int current = 0;
   int _selectedIndex = 0;
 
   @override
@@ -86,6 +86,18 @@ class _ShopPageState extends State<ShopPage> {
                             AppAssets.kShopBanner,
                             fit: BoxFit.fill,
                           )),
+                      SizedBox(
+                          width: 343.w,
+                          child: Image.asset(
+                            AppAssets.kShopBanner,
+                            fit: BoxFit.fill,
+                          )),
+                      SizedBox(
+                          width: 343.w,
+                          child: Image.asset(
+                            AppAssets.kShopBanner,
+                            fit: BoxFit.fill,
+                          )),
                     ],
                     options: CarouselOptions(
                       height: 213.h,
@@ -97,6 +109,13 @@ class _ShopPageState extends State<ShopPage> {
                       autoPlayAnimationDuration:
                           const Duration(milliseconds: 800),
                       autoPlayCurve: Curves.fastOutSlowIn,
+                      onPageChanged: (index, reason) => {
+                        setState(
+                          () {
+                            current = index;
+                          },
+                        )
+                      },
                     )),
                 Positioned(
                   right: 12,
@@ -114,16 +133,14 @@ class _ShopPageState extends State<ShopPage> {
             SizedBox(
               height: 12.h,
             ),
-            SmoothPageIndicator(
-              controller: controller,
-              count: 4,
-              effect: ScaleEffect(
-                activeDotColor: AppColors.kPrimary,
-                dotColor: AppColors.kGreyIndicator,
-                dotHeight: 9,
-                dotWidth: 9,
-                spacing: 6,
-              ),
+            DotsIndicator(
+              dotsCount: 5,
+              decorator: DotsDecorator(
+                  color: AppColors.kGreyIndicator,
+                  activeColor: AppColors.kPink,
+                  activeSize: const Size.square(12),
+                  spacing: EdgeInsets.all(2.h)),
+                  position: current,
             ),
             SizedBox(
               height: 12.h,
@@ -140,7 +157,6 @@ class _ShopPageState extends State<ShopPage> {
                 SizedBox(
                     height: 40.h,
                     child: ListView.separated(
-                      
                       physics: const NeverScrollableScrollPhysics(),
                       separatorBuilder: (context, index) =>
                           SizedBox(width: 8.w),
@@ -294,7 +310,8 @@ class _ShopPageState extends State<ShopPage> {
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) {
                       return ColorCard(
-                        colorCardItem: colorCardItem[index], index: index,
+                        colorCardItem: colorCardItem[index],
+                        index: index,
                       );
                     },
                     separatorBuilder: (BuildContext context, int index) {

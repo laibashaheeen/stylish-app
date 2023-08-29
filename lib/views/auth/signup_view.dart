@@ -6,6 +6,7 @@ import 'package:stylish/data/app_colors.dart';
 import 'package:stylish/data/typography.dart';
 import 'package:stylish/views/auth/components/auth_field.dart';
 import 'package:stylish/views/auth/signin_view.dart';
+import 'package:stylish/views/welcome/welcome_view.dart';
 import 'package:stylish/views/widgets/buttons/primary_button.dart';
 
 class SignUpView extends StatefulWidget {
@@ -89,7 +90,17 @@ AuthField(
               ),
             ),
             SizedBox(height: 38.h),
-            PrimaryButton(onTap: () {if (_formKey.currentState!.validate()) {}}, text: 'Create Account'),
+            PrimaryButton(onTap: () {
+                  {if (_formKey.currentState!.validate()) {
+                    
+                    Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const WelcomeView()),
+                  );
+                  }}
+                  
+                }, text: 'Create Account'),
             SizedBox(height: 40.h),
             Center(
               child: Text('- OR Continue with -',

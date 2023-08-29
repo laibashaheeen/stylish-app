@@ -23,10 +23,17 @@ class CustomTextField extends StatelessWidget {
           hintText: 'Search any Product..',
           
           hintStyle: AppTypography.kExtraLight14.copyWith(color: AppColors.kGreySearch),
-          prefixIcon: SvgPicture.asset(AppAssets.kSearchBar),
+          prefixIcon: Padding(
+            padding:  EdgeInsets.symmetric(horizontal: 8.0.w),
+            child: SvgPicture.asset(AppAssets.kSearchBar),
+          ),
           prefixIconConstraints:
                 BoxConstraints(minWidth: 20.w, minHeight: 20.h),
-          suffixIcon: SvgPicture.asset(AppAssets.kMicrophone,),
+                
+          suffixIcon: Padding(
+            padding:  EdgeInsets.symmetric(horizontal:8.0.w),
+            child: SvgPicture.asset(AppAssets.kMicrophone,),
+          ),
            suffixIconConstraints:
                 BoxConstraints(minWidth: 24.w, minHeight: 24.h),
           

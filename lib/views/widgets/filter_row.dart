@@ -32,6 +32,7 @@ final String text;
                             Text('Sort',
                                 style: AppTypography.kExtraLight12
                                     .copyWith(color: AppColors.kBlack)),
+                                    SizedBox(width: 4.w,),
                             SvgPicture.asset(AppAssets.kSort),
                           ],
                         ),
@@ -46,9 +47,10 @@ final String text;
                             color: AppColors.kWhite),
                         child: Row(
                           children: [
-                            Text('Filter',
+                            Text('Filter ',
                                 style: AppTypography.kExtraLight12
                                     .copyWith(color: AppColors.kBlack)),
+                                     SizedBox(width: 4.w,),
                             SvgPicture.asset(AppAssets.kFilter),
                           ],
                         ),

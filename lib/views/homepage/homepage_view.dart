@@ -1,8 +1,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:stylish/data/app_assets.dart';
 import 'package:stylish/data/app_colors.dart';
 import 'package:stylish/models/catelog_model.dart';
@@ -33,12 +33,14 @@ class _HomePageState extends State<HomePage> {
   final PageController controller = PageController();
   final ScrollController _scrollController =
       ScrollController(initialScrollOffset: 0);
+  final ScrollController scrollController =
+      ScrollController(initialScrollOffset: 0);
+  int current = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        
         elevation: 0,
         leading: IconButton(
           onPressed: () {},
@@ -47,9 +49,15 @@ class _HomePageState extends State<HomePage> {
         centerTitle: true,
         title: Image.asset(AppAssets.kLogo),
         actions: [
-          InkWell(onTap: () {
-            Navigator.push(context, MaterialPageRoute(builder:(context) => const ProfilePage(),));
-          } ,child: Image.asset(AppAssets.kProfile)),
+          InkWell(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const ProfilePage(),
+                    ));
+              },
+              child: Image.asset(AppAssets.kProfile)),
         ],
       ),
       backgroundColor: AppColors.kWhiteBody,
@@ -68,14 +76,15 @@ class _HomePageState extends State<HomePage> {
               height: 16.h,
             ),
             Padding(
-              padding: EdgeInsets.only(right: 16.0.h),
-              child: const FilterRow(text: 'All Featured')
-            ),
+                padding: EdgeInsets.only(right: 16.0.h),
+                child: const FilterRow(text: 'All Featured')),
             SizedBox(
               height: 17.h,
             ),
             Container(
-              height: 90.h,
+              height: 94.h,
+              width: double.infinity,
+              padding: EdgeInsets.all(8.h),
               color: AppColors.kWhite,
               child: ListView.separated(
                   physics: const NeverScrollableScrollPhysics(),
@@ -108,22 +117,38 @@ class _HomePageState extends State<HomePage> {
                     autoPlayAnimationDuration:
                         const Duration(milliseconds: 800),
                     autoPlayCurve: Curves.fastOutSlowIn,
+                    onPageChanged: (index, reason) => {
+                      setState(
+                        () {
+                          current = index;
+                        },
+                      )
+                    },
                   )),
             ),
             SizedBox(
               height: 12.h,
             ),
-            SmoothPageIndicator(
-              controller: controller,
-              count: 3,
-              effect: ScaleEffect(
-                activeDotColor: AppColors.kPink,
-                dotColor: AppColors.kGreyIndicator,
-                dotHeight: 9,
-                dotWidth: 9,
-                spacing: 6,
-              ),
+            DotsIndicator(
+              dotsCount: 3,
+              decorator: DotsDecorator(
+                  color: AppColors.kGreyIndicator,
+                  activeColor: AppColors.kPink,
+                  activeSize: const Size.square(12),
+                  spacing: EdgeInsets.all(2.h)),
+              position: current,
             ),
+            // SmoothPageIndicator(
+            //   controller: controller,
+            //   count: 3,
+            //   effect: ScaleEffect(
+            //     activeDotColor: AppColors.kPink,
+            //     dotColor: AppColors.kGreyIndicator,
+            //     dotHeight: 9,
+            //     dotWidth: 9,
+            //     spacing: 6,
+            //   ),
+            // ),
             SizedBox(
               height: 23.h,
             ),
@@ -147,8 +172,8 @@ class _HomePageState extends State<HomePage> {
                   SizedBox(
                     height: 255.h,
                     child: ListView.separated(
-                      itemCount: 2,
-                      physics: const NeverScrollableScrollPhysics(),
+                      controller: scrollController,
+                      itemCount: offerItem.length,
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (context, index) {
                         return CatalogCard(
@@ -163,10 +188,20 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   Positioned(
-                      right: 9,
-                      child: InkWell(
-                          onTap: () {},
-                          child: Image.asset(AppAssets.kIosArrow)))
+                    right: 9,
+                    child: InkWell(
+                      onTap: () {
+                        int nextIndex =
+                            scrollController.position.pixels ~/ 255.h + 1;
+                        if (nextIndex < shopItem.length) {
+                          scrollController.animateTo(nextIndex * 255.h,
+                              duration: const Duration(milliseconds: 500),
+                              curve: Curves.easeIn);
+                        }
+                      },
+                      child: Image.asset(AppAssets.kIosArrow),
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -208,7 +243,6 @@ class _HomePageState extends State<HomePage> {
                     controller: _scrollController,
                     itemCount: shopItem.length,
                     scrollDirection: Axis.horizontal,
-                    
                     itemBuilder: (context, index) {
                       return ShopCatalogCard(
                         shopItem: shopItem[index],
@@ -230,7 +264,7 @@ class _HomePageState extends State<HomePage> {
                       if (nextIndex < shopItem.length) {
                         _scrollController.animateTo(nextIndex * 210.h,
                             duration: const Duration(milliseconds: 500),
-                                curve: Curves.easeIn);
+                            curve: Curves.easeIn);
                       }
                     },
                     child: Image.asset(AppAssets.kIosArrow),
@@ -238,12 +272,16 @@ class _HomePageState extends State<HomePage> {
                 ),
               ],
             ),
-            SizedBox(height: 16.h,),
+            SizedBox(
+              height: 16.h,
+            ),
             Padding(
-                padding: EdgeInsets.only(right: 16.0.h),
+              padding: EdgeInsets.only(right: 16.0.h),
               child: const SummerSale(),
             ),
-            SizedBox(height: 16.h,),
+            SizedBox(
+              height: 16.h,
+            ),
             const SponsorCard(),
             SizedBox(
               height: 100.h,

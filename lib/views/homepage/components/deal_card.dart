@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:stylish/data/app_assets.dart';
 import 'package:stylish/data/app_colors.dart';
 import 'package:stylish/data/typography.dart';
+import 'package:stylish/views/widgets/buttons/outlined_button.dart';
 
 class DealCard extends StatelessWidget {
   final String title;
@@ -15,8 +15,8 @@ class DealCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(8.h),
-      height: 60.h,
+      padding: EdgeInsets.only(top: 8.h, bottom: 8.h, left: 8.w, right: 16.w),
+      // height: 60.h,
       decoration: BoxDecoration(
         color: color,
         borderRadius: BorderRadius.circular(8.r),
@@ -25,10 +25,11 @@ class DealCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+           
            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
            Text(title, style: AppTypography.kLight16.copyWith(color: AppColors.kWhite),),
+           SizedBox(height: 8.0.h,),
             Row(children: [
               SvgPicture.asset(svg),
               SizedBox(width: 5.w,),
@@ -36,33 +37,7 @@ class DealCard extends StatelessWidget {
             ],)
             
           ],),
-           InkWell(
-                      onTap: () {},
-                      child: Container(
-                        padding: EdgeInsets.symmetric(horizontal:10.w, vertical: 6.h),
-                        width: 90.w,
-                        height: 28.h,
-                        
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(4.r),
-                          border: Border.all(
-                            color: Colors.white,
-                            width: 1,
-                          ),
-                        ),
-                        child: Row(
-                          children: [
-                            Text(
-                              'View all',
-                              style: AppTypography.kSemiBold12
-                                  .copyWith(color: AppColors.kWhite),
-                            ),
-                            SizedBox(width: 4.w,),
-                            SvgPicture.asset(AppAssets.kForwardArrow),
-                          ],
-                        ),
-                      ),
-                    ),
+           const CustomOutlinedButton(text: 'View All'),
         ],
       ),
     );

@@ -22,7 +22,7 @@ class _HomePageState extends State<LandingPage> {
     const HomePage(),
     const WishlistPage(),
     Container(),
-    const ShopPage(),
+    Container(),
     Container(),
   ];
   @override

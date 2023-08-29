@@ -6,8 +6,8 @@ import 'package:stylish/models/catelog_model.dart';
 import 'package:stylish/views/widgets/rating_star.dart';
 
 class CatalogCard extends StatelessWidget {
-  final OfferModel offerItem;
-  const CatalogCard({super.key, required this.offerItem});
+  final CatalogModel catalogItem;
+  const CatalogCard({super.key, required this.catalogItem});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class CatalogCard extends StatelessWidget {
       child: Column(
         children: [
           Image.asset(
-            offerItem.image,
+            catalogItem.image,
             width: 241.w,
             fit: BoxFit.contain,
           ),
@@ -32,7 +32,7 @@ class CatalogCard extends StatelessWidget {
                   height: 8.h,
                 ),
                 Text(
-                  offerItem.title,
+                  catalogItem.title,
                   style:
                       AppTypography.kLight12.copyWith(color: AppColors.kBlack),
                 ),
@@ -40,7 +40,7 @@ class CatalogCard extends StatelessWidget {
                   height: 4.h,
                 ),
                 Text(
-                  offerItem.description,
+                  catalogItem.description,
                   style: AppTypography.kExtraLight10
                     ..copyWith(color: AppColors.kBlack),
                 ),
@@ -48,7 +48,7 @@ class CatalogCard extends StatelessWidget {
                   height: 4.h,
                 ),
                 Text(
-                  offerItem.price,
+                  catalogItem.price,
                   style: AppTypography.kLight12
                     ..copyWith(color: AppColors.kBlack),
                 ),
@@ -58,7 +58,7 @@ class CatalogCard extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      offerItem.originalPrice,
+                      catalogItem.originalPrice,
                       style: AppTypography.kExtraLight10.copyWith(
                           color: AppColors.kGrey,
                           decoration: TextDecoration.lineThrough),
@@ -67,7 +67,7 @@ class CatalogCard extends StatelessWidget {
                       width: 4.w,
                     ),
                     Text(
-                      offerItem.sale,
+                      catalogItem.sale,
                       style: AppTypography.kExtraLight10
                           .copyWith(color: AppColors.kPrimary),
                     ),
@@ -82,7 +82,7 @@ class CatalogCard extends StatelessWidget {
                     const RatingStar(),
                     SizedBox(width: 5.w),
                     Text(
-                      offerItem.rating,
+                      catalogItem.rating,
                       style: AppTypography.kExtraLight10
                           .copyWith(color: AppColors.kGrey),
                     ),

@@ -30,7 +30,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final CarouselController carouselController = CarouselController();
-  final PageController controller = PageController();
+  // final PageController controller = PageController();
   final ScrollController _scrollController =
       ScrollController(initialScrollOffset: 0);
   final ScrollController scrollController =
@@ -138,17 +138,7 @@ class _HomePageState extends State<HomePage> {
                   spacing: EdgeInsets.all(2.h)),
               position: current,
             ),
-            // SmoothPageIndicator(
-            //   controller: controller,
-            //   count: 3,
-            //   effect: ScaleEffect(
-            //     activeDotColor: AppColors.kPink,
-            //     dotColor: AppColors.kGreyIndicator,
-            //     dotHeight: 9,
-            //     dotWidth: 9,
-            //     spacing: 6,
-            //   ),
-            // ),
+          
             SizedBox(
               height: 23.h,
             ),
@@ -173,11 +163,11 @@ class _HomePageState extends State<HomePage> {
                     height: 255.h,
                     child: ListView.separated(
                       controller: scrollController,
-                      itemCount: offerItem.length,
+                      itemCount: catalogItem.length,
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (context, index) {
                         return CatalogCard(
-                          offerItem: offerItem[index],
+                          catalogItem: catalogItem[index],
                         );
                       },
                       separatorBuilder: (BuildContext context, int index) {
@@ -193,7 +183,7 @@ class _HomePageState extends State<HomePage> {
                       onTap: () {
                         int nextIndex =
                             scrollController.position.pixels ~/ 255.h + 1;
-                        if (nextIndex < shopItem.length) {
+                        if (nextIndex < catalogItem.length) {
                           scrollController.animateTo(nextIndex * 255.h,
                               duration: const Duration(milliseconds: 500),
                               curve: Curves.easeIn);

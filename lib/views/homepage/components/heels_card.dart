@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:stylish/data/app_assets.dart';
 import 'package:stylish/data/app_colors.dart';
 import 'package:stylish/data/typography.dart';
+import 'package:stylish/views/widgets/buttons/outlined_button.dart';
 
 class HeelCard extends StatelessWidget {
   const HeelCard({super.key});
@@ -56,32 +56,10 @@ class HeelCard extends StatelessWidget {
               SizedBox(
                 height: 10.h,
               ),
-              InkWell(
-                onTap: () {},
-                child: Container(
-                  margin: EdgeInsets.only(right: 12.0.w),
-                  padding: EdgeInsets.symmetric(vertical: 4.h, horizontal: 8.w),
-                  width: 92.w,
-                  height: 24.h,
-                  decoration: BoxDecoration(
-                    color: AppColors.kPrimary,
-                    borderRadius: BorderRadius.circular(6.r),
-                  ),
-                  child: Row(
-                    children: [
-                      Text(
-                        'Vist Now',
-                        style: AppTypography.kSemiBold12
-                            .copyWith(color: AppColors.kWhite),
-                      ),
-                      SizedBox(
-                        width: 4.w,
-                      ),
-                      SvgPicture.asset(AppAssets.kForwardArrow),
-                    ],
-                  ),
-                ),
-              ),
+              Padding(
+                padding: EdgeInsets.only(right: 12.0.w),
+                child: const CustomOutlinedButton(text: 'Visit Now', isFilled: true),
+              )
             ],
           ),
         ],

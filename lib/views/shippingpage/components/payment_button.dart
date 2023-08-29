@@ -21,6 +21,7 @@ bool _isTapped = false;
       onTap: () {
         setState(() {
           _isTapped = !_isTapped;
+          
         });
       },
        focusColor: AppColors.kPrimary,

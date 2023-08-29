@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:stylish/data/app_colors.dart';
 import 'package:stylish/data/typography.dart';
 import 'package:stylish/models/checkout_model.dart';
+import 'package:stylish/views/checkout/components/color_option.dart';
 import 'package:stylish/views/placeorder/placeorder_page.dart';
 import 'package:stylish/views/widgets/rating_star.dart';
 
@@ -57,33 +58,11 @@ class CheckoutCard extends StatelessWidget {
                             SizedBox(
                               width: 8.w,
                             ),
-                            Container(
-                              padding: EdgeInsets.all(4.h),
-                              decoration: BoxDecoration(
-                                  border:
-                                      Border.all(color: AppColors.kGreyDivider),
-                                  borderRadius: BorderRadius.circular(2.r)),
-                              child: Text(
-                                checkoutItem.firstColor,
-                                style: AppTypography.kLight10
-                                    .copyWith(color: AppColors.kBlack),
-                              ),
-                            ),
+                            ColorOption(checkoutItem: checkoutItem, text: checkoutItem.firstColor,),
                             SizedBox(
                               width: 5.w,
                             ),
-                            Container(
-                              padding: EdgeInsets.all(4.h),
-                              decoration: BoxDecoration(
-                                  border:
-                                      Border.all(color: AppColors.kGreyDivider),
-                                  borderRadius: BorderRadius.circular(2.r)),
-                              child: Text(
-                                checkoutItem.secondColor,
-                                style: AppTypography.kLight10
-                                    .copyWith(color: AppColors.kBlack),
-                              ),
-                            )
+                            ColorOption(checkoutItem: checkoutItem, text: checkoutItem.secondColor),
                           ],
                         ),
                         SizedBox(
